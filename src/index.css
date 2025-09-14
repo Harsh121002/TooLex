@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root {
+  --color-primary: #6366F1; /* indigo */
+  --color-light: #64748B;  /* slate */
+  --color-dark: #1E293B;   /* navy */
+}
+
+[data-theme="dark"] {
+  --background: #0f172a;
+  --text: #ffffff;
+}
+
+[data-theme="light"] {
+  --background: #ffffff;
+  --text: #000000;
+}
