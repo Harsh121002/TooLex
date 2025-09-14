@@ -42,7 +42,11 @@ export default function HeroSection() {
       </div>
 
       {/* Left Content */}
-      <div className="relative z-10 flex flex-col items-start max-w-2xl px-6 lg:px-16 space-y-8">
+      <div
+        className="relative z-10 flex flex-col items-start max-w-2xl 
+                   px-6 lg:px-16 space-y-8 
+                   mt-20 lg:mt-0"
+      >
         {/* Logo */}
         <div className="flex items-center gap-2">
           <svg
@@ -164,7 +168,7 @@ export default function HeroSection() {
                   <SwiperSlide>
                     <img
                       src="/images/black4.png"
-                      alt="Dashboard 3"
+                      alt="Dashboard 4"
                       className="w-full h-full object-cover"
                     />
                   </SwiperSlide>
