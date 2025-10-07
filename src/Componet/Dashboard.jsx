@@ -75,91 +75,90 @@ export default function Dashboard() {
   return (
     <GoogleOAuthProvider clientId="YOUR_GOOGLE_CLIENT_ID">
       <div
-        className={`min-h-screen p-4 sm:p-6 ${
-          darkMode ? bgClasses.dark[darkColor] : bgClasses.light[lightColor]
-        }`}
+        className={`min-h-screen p-4 sm:p-6 ${darkMode ? bgClasses.dark[darkColor] : bgClasses.light[lightColor]
+          }`}
       >
         <div className="max-w-7xl mx-auto">
           {/* Theme Controls */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6 mb-6">
-  <div className="flex flex-col">
-    <label className="text-sm mb-1">Skin:</label>
-    <select
-      className="p-2 rounded border bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100"
-      value={skin}
-      onChange={(e) => setSkin(e.target.value)}
-    >
-      <option className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100" value="bordered">Bordered</option>
-      <option className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100" value="flat">Flat</option>
-      <option className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100" value="shadow">Shadow</option>
-    </select>
-  </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-4 mb-6">
+            <div className="flex flex-col">
+              <label className="text-sm mb-1">Skin:</label>
+              <select
+                className="p-2 rounded border bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100"
+                value={skin}
+                onChange={(e) => setSkin(e.target.value)}
+              >
+                <option className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100" value="bordered">Bordered</option>
+                <option className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100" value="flat">Flat</option>
+                <option className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100" value="shadow">Shadow</option>
+              </select>
+            </div>
 
-  <div className="flex flex-col">
-    <label className="text-sm mb-1">Primary Color:</label>
-    <select
-      className="p-2 rounded border bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100"
-      value={primaryColor}
-      onChange={(e) => setPrimaryColor(e.target.value)}
-    >
-      {colorKeys.map((color) => (
-        <option
-          key={color}
-          value={color}
-          className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100"
-        >
-          {color}
-        </option>
-      ))}
-    </select>
-  </div>
+            <div className="flex flex-col">
+              <label className="text-sm mb-1">Primary Color:</label>
+              <select
+                className="p-2 rounded border bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100"
+                value={primaryColor}
+                onChange={(e) => setPrimaryColor(e.target.value)}
+              >
+                {colorKeys.map((color) => (
+                  <option
+                    key={color}
+                    value={color}
+                    className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100"
+                  >
+                    {color}
+                  </option>
+                ))}
+              </select>
+            </div>
 
-  <div className="flex flex-col">
-    <label className="text-sm mb-1">Light Color:</label>
-    <select
-      className="p-2 rounded border bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100"
-      value={lightColor}
-      onChange={(e) => setLightColor(e.target.value)}
-    >
-      <option className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100" value="slate">Slate</option>
-      <option className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100" value="zinc">Zinc</option>
-      <option className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100" value="gray">Gray</option>
-    </select>
-  </div>
+            <div className="flex flex-col">
+              <label className="text-sm mb-1">Light Color:</label>
+              <select
+                className="p-2 rounded border bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100"
+                value={lightColor}
+                onChange={(e) => setLightColor(e.target.value)}
+              >
+                <option className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100" value="slate">Slate</option>
+                <option className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100" value="zinc">Zinc</option>
+                <option className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100" value="gray">Gray</option>
+              </select>
+            </div>
 
-  <div className="flex flex-col">
-    <label className="text-sm mb-1">Dark Color:</label>
-    <select
-      className="p-2 rounded border bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100"
-      value={darkColor}
-      onChange={(e) => setDarkColor(e.target.value)}
-    >
-      <option className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100" value="black">Black</option>
-      <option className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100" value="slate">Slate</option>
-      <option className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100" value="zinc">Zinc</option>
-    </select>
-  </div>
+            <div className="flex flex-col">
+              <label className="text-sm mb-1">Dark Color:</label>
+              <select
+                className="p-2 rounded border bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100"
+                value={darkColor}
+                onChange={(e) => setDarkColor(e.target.value)}
+              >
+                <option className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100" value="black">Black</option>
+                <option className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100" value="slate">Slate</option>
+                <option className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100" value="zinc">Zinc</option>
+              </select>
+            </div>
 
-  <div className="flex flex-col">
-    <label className="text-sm mb-1">Theme Mode:</label>
-    <select
-      className="p-2 rounded border bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100"
-      value={darkMode ? "dark" : "light"}
-      onChange={(e) => setDarkMode(e.target.value === "dark")}
-    >
-      <option className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100" value="light">Light</option>
-      <option className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100" value="dark">Dark</option>
-    </select>
-  </div>
-</div>
+            <div className="flex flex-col">
+              <label className="text-sm mb-1">Theme Mode:</label>
+              <select
+                className="p-2 rounded border bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100"
+                value={darkMode ? "dark" : "light"}
+                onChange={(e) => setDarkMode(e.target.value === "dark")}
+              >
+                <option className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100" value="light">Light</option>
+                <option className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100" value="dark">Dark</option>
+              </select>
+            </div>
+          </div>
 
 
           {/* 📦 Main Layout */}
-          <div className="mt-8 grid grid-cols-1 lg:grid-cols-4 gap-4 sm:gap-6 items-stretch border border-gray-400 rounded-md p-4">
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-4 items-stretch border border-gray-400 rounded-md p-4">
             {/* Sidebar */}
-            <div className="col-span-1 flex flex-col gap-6 h-full">
+            <div className="col-span-1 flex flex-col gap-4 h-full">
               {/* Admin Menu */}
-              <div className={`p-4 ${skinClasses(darkMode)[skin]}`}>
+              <div className={`relative p-4 ${skinClasses(darkMode)[skin]}`}>
                 <h3 className="font-semibold mb-4">Admin Menu</h3>
                 <ul className="space-y-2">
                   {["Getting start", "Shipping", "Payments", "Returns", "My Account", "Copyright & Legal"].map(
@@ -167,11 +166,10 @@ export default function Dashboard() {
                       <li
                         key={label}
                         onClick={() => setActiveMenu(label)}
-                        className={`p-2 rounded cursor-pointer transition ${
-                          activeMenu === label
-                            ? `bg-gradient-to-r ${themeColors[primaryColor]} text-white`
-                            : "hover:bg-gray-600/20"
-                        }`}
+                        className={`p-2 rounded cursor-pointer transition ${activeMenu === label
+                          ? `bg-gradient-to-r ${themeColors[primaryColor]} text-white`
+                          : "hover:bg-gray-600/20"
+                          }`}
                       >
                         {label}
                       </li>
@@ -181,7 +179,7 @@ export default function Dashboard() {
               </div>
 
               {/* Call Settings */}
-              <div className={`p-4 flex flex-col flex-1 ${skinClasses(darkMode)[skin]}`}>
+              <div className={`relative p-4 flex flex-col flex-1 ${skinClasses(darkMode)[skin]}`}>
                 <h3 className="font-semibold mb-4">Call Settings</h3>
                 {callSettings.map((setting, i) => (
                   <div key={i} className="flex justify-between items-center mb-3">
@@ -200,109 +198,86 @@ export default function Dashboard() {
             </div>
 
             {/* Right Side Content */}
-            <div className="col-span-3 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 items-stretch">
-                          {/* 🎨 UI/UX Design Conference Card */}
-              <div className={`p-4 ${skinClasses(darkMode)[skin]}`}>
-                <div className="flex items-center text-gray-400 text-sm">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-4 h-4 mr-1"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                    />
-                  </svg>
-                  June 23, 2021
-                </div>
-
-                <h3 className="font-semibold mt-2">UI/UX Design Conference</h3>
-
-                <div className="mt-3 flex gap-2">
-                  <span className="px-2 py-1 rounded bg-yellow-600/20 text-yellow-400 text-xs font-medium">
-                    UI/UX Design
-                  </span>
-                  <span className="px-2 py-1 rounded bg-emerald-600/20 text-emerald-400 text-xs font-medium">
-                    Mobile
-                  </span>
-                </div>
-
-                <div className="mt-4 flex -space-x-2">
-                  <img
-                    className="w-8 h-8 rounded-full border-2 border-gray-800"
-                    src="https://randomuser.me/api/portraits/men/32.jpg"
-                    alt="user"
-                  />
-                  <div className="w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center border-2 border-gray-800 text-xs font-semibold">
-                    JL
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:col-span-2">
+              <div className="grid lg:col-span-2 grid-cols-1 gap-4 lg:grid-cols-2">
+                {/* 🎨 UI/UX Design Conference Card */}
+                <div className={`relative p-4 ${skinClasses(darkMode)[skin]}`}>
+                  <div className="flex items-center text-gray-400 text-sm">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-4 h-4 mr-1"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                      />
+                    </svg>
+                    June 23, 2021
                   </div>
-                  <img
-                    className="w-8 h-8 rounded-full border-2 border-gray-800"
-                    src="https://randomuser.me/api/portraits/men/45.jpg"
-                    alt="user"
-                  />
+
+                  <h3 className="font-semibold mt-2">UI/UX Design Conference</h3>
+
+                  <div className="mt-3 flex gap-2">
+                    <span className="px-2 py-1 rounded bg-yellow-600/20 text-yellow-400 text-xs font-medium">
+                      UI/UX Design
+                    </span>
+                    <span className="px-2 py-1 rounded bg-emerald-600/20 text-emerald-400 text-xs font-medium">
+                      Mobile
+                    </span>
+                  </div>
+
+                  <div className="mt-4 flex -space-x-2">
+                    <img
+                      className="w-8 h-8 rounded-full border-2 border-gray-800"
+                      src="https://randomuser.me/api/portraits/men/32.jpg"
+                      alt="user"
+                    />
+                    <div className="w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center border-2 border-gray-800 text-xs font-semibold">
+                      JL
+                    </div>
+                    <img
+                      className="w-8 h-8 rounded-full border-2 border-gray-800"
+                      src="https://randomuser.me/api/portraits/men/45.jpg"
+                      alt="user"
+                    />
+                  </div>
+                </div>
+                <div className={`relative p-4 ${skinClasses(darkMode)[skin]}`}>
+                  <h3 className="font-semibold">Load Application</h3>
+                  <p
+                    className="text-sm mt-2 text-gray-400"
+                    style={{
+                      display: "-webkit-box",
+                      WebkitLineClamp: 4,   // limit to 4 rows
+                      WebkitBoxOrient: "vertical",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                    }}
+                  >
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam maiores eligendi,
+                    amet ipsam ipsa officiis asperiores expedita, nostrum alias ad tempore in eveniet
+                    fugiat ut beatae quaerat accusantium! Repudiandae aliquam placeat eius. Voluptas,
+                    ad sunt nulla ducimus delectus facilis accusamus.
+                  </p>
+
+
+                  {/* progress bar container */}
+                  <div className="mt-3 h-2 w-full bg-gray-300 dark:bg-gray-700 rounded overflow-hidden relative">
+                    {/* animated line - only this changes color */}
+                    <div
+                      className={`absolute top-0 left-0 h-2 w-1/3 bg-gradient-to-r ${themeColors[primaryColor]} animate-[slide_2s_linear_infinite]`}
+                    />
+                  </div>
                 </div>
               </div>
-
-              <div className={`p-4 ${skinClasses(darkMode)[skin]}`}>
-                <h3 className="font-semibold">Load Application</h3>
-                <p
-                  className="text-sm mt-2 text-gray-400"
-                  style={{
-                    display: "-webkit-box",
-                    WebkitLineClamp: 4,   // limit to 4 rows
-                    WebkitBoxOrient: "vertical",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                  }}
-                >
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam maiores eligendi,
-                  amet ipsam ipsa officiis asperiores expedita, nostrum alias ad tempore in eveniet
-                  fugiat ut beatae quaerat accusantium! Repudiandae aliquam placeat eius. Voluptas,
-                  ad sunt nulla ducimus delectus facilis accusamus.
-                </p>
-
-
-                {/* progress bar container */}
-                <div className="mt-3 h-2 w-full bg-gray-300 dark:bg-gray-700 rounded overflow-hidden relative">
-                  {/* animated line - only this changes color */}
-                  <div
-                    className={`absolute top-0 left-0 h-2 w-1/3 bg-gradient-to-r ${themeColors[primaryColor]} animate-[slide_2s_linear_infinite]`}
-                  />
-                </div>
-              </div>
-
-              <div
-                className={`p-4 bg-gradient-to-tr ${themeColors[primaryColor]} text-white flex flex-col items-center justify-center ${skinClasses(darkMode)[skin]
-                  }`}
-              >
-                <div className="w-20 h-20">
-                  <CircularProgressbar
-                    value={59}
-                    text="59%"
-                    styles={buildStyles({
-                      pathColor: "#fff",
-                      textColor: "#fff",
-                      trailColor: "rgba(255,255,255,0.3)",
-                      textSize: "20px",
-                    })}
-                  />
-                </div>
-                <p className="mt-3 text-lg font-bold">$31.313</p>
-                <p className="text-sm">Current Balance</p>
-                <button className="mt-4 bg-white/20 px-3 py-1 rounded">
-                  Get Statement
-                </button>
-              </div>
-
               {/* Sign In */}
               {/* 🔑 Sign In Card */}
-              <div className={`p-4 ${skinClasses(darkMode)[skin]}`}>
+              <div className={`relative p-4 ${skinClasses(darkMode)[skin]}`}>
                 <h3 className="font-semibold mb-3">Sign In</h3>
 
                 {/* Username */}
@@ -381,11 +356,9 @@ export default function Dashboard() {
                   </button>
                 </div>
               </div>
-
-
               {/* 🖼 NFT Card */}
               <div
-                className={`p-4 rounded-xl shadow-lg flex flex-col ${skinClasses(darkMode)[skin]}`}
+                className={`relative p-4 rounded-xl shadow-lg flex flex-col ${skinClasses(darkMode)[skin]}`}
               >
                 {/* Header */}
                 <div className="flex items-center justify-between">
@@ -475,12 +448,98 @@ export default function Dashboard() {
                   </div>
                 </div>
               </div>
+              {/* Bottom Dots */}
+              <div
+                className={`lg:col-span-2 relative p-4 flex flex-col sm:flex-row flex-wrap gap-4 items-center justify-center ${darkMode ? bgClasses.dark[darkColor] : bgClasses.light[lightColor]
+                  } ${skinClasses(darkMode)[skin]}`}
+              >
+                {/* Spinners */}
+                <div className="flex gap-3">
+                  <div className="w-8 h-8 rounded-full border-2 border-t-transparent border-indigo-500 animate-spin"></div>
+                  <div className="w-8 h-8 rounded-full border-2 border-t-transparent border-pink-500 animate-spin"></div>
+                  <div className="w-8 h-8 rounded-full border-2 border-t-transparent border-green-500 animate-spin"></div>
+                  <div className="w-8 h-8 rounded-full border-2 border-t-transparent border-orange-500 animate-spin"></div>
+                </div>
 
+                {/* Color pickers */}
+                <div className="flex flex-wrap items-center justify-center gap-4">
+                  {Object.keys(themeColors1).map((color, i) => (
+                    <button
+                      key={`check-${i}`}
+                      onClick={() => setPrimaryColor(color)}
+                      className={`w-7 h-7 rounded-md flex items-center justify-center bg-gradient-to-r ${themeColors[color]} ${primaryColor === color ? "ring-2 ring-white" : ""
+                        }`}
+                    >
+                      {primaryColor === color && (
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="w-4 h-4"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="white"
+                          strokeWidth={3}
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                      )}
+                    </button>
+                  ))}
 
+                  {Object.keys(themeColors1).slice(0, 3).map((color, i) => (
+                    <button
+                      key={`solid-${i}`}
+                      onClick={() => setPrimaryColor(color)}
+                      className={`w-7 h-7 rounded-full flex items-center justify-center bg-gradient-to-r ${themeColors[color]} ${primaryColor === color ? "ring-2 ring-white" : ""
+                        } transition-all duration-200`}
+                    >
+                      {primaryColor === color && (
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="w-4 h-4 text-white"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                      )}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+            </div>
+            <div className="grid-cols-1">
+              {/* Card One*/}
+              <div
+                className={`relative p-5 bg-gradient-to-tr ${themeColors[primaryColor]} text-white flex flex-col items-center justify-center ${skinClasses(darkMode)[skin]
+                  }`}
+              >
+                <div className="w-20 h-20">
+                  <CircularProgressbar
+                    value={59}
+                    text="59%"
+                    styles={buildStyles({
+                      pathColor: "#fff",
+                      textColor: "#fff",
+                      trailColor: "rgba(255,255,255,0.3)",
+                      textSize: "20px",
+                    })}
+                  />
+                </div>
+                <p className="mt-5 text-lg font-bold">$31.313</p>
+                <p className="text-sm">Current Balance</p>
+                <button className="mt-4 bg-white/20 px-3 py-1 rounded">
+                  Get Statement
+                </button>
+              </div>
               {/* Wages + Banking */}
-              <div className="flex flex-col gap-4 h-full">
+              <div className="flex flex-col gap-4 h-full mt-5">
                 <div
-                  className={`p-4 flex flex-col justify-between min-h-[140px] 
+                  className={`relative p-4 flex flex-col justify-between min-h-[140px] 
     ${darkMode ? "bg-[#11111f] text-white" : `${bgClasses.light[lightColor]}`} 
     ${skinClasses(darkMode)[skin]}`}
                 >
@@ -527,9 +586,8 @@ export default function Dashboard() {
                   </div>
                 </div>
 
-
                 <div
-                  className={`p-4 bg-gradient-to-r from-pink-600 to-purple-700 text-white flex flex-col flex-1 ${skinClasses(darkMode)[skin]
+                  className={`relative p-5 bg-gradient-to-r from-pink-600 to-purple-700 text-white ${skinClasses(darkMode)[skin]
                     }`}
                 >
                   <h3 className="font-semibold mb-3">Banking Cards</h3>
@@ -538,11 +596,12 @@ export default function Dashboard() {
                     slidesPerView={1.3}
                     pagination={{ clickable: true }}
                     modules={[Pagination]}
-                    className="w-full flex-1"
+                    className="w-full"
+
                   >
                     {cards.map((card, idx) => (
-                      <SwiperSlide key={idx} className="h-full">
-                        <div className="rounded-xl p-6 bg-gradient-to-r from-pink-500 to-purple-500 shadow-lg text-white flex flex-col gap-4 h-full">
+                      <SwiperSlide key={idx}>
+                        <div className="rounded-xl p-6 bg-gradient-to-r from-pink-500 to-purple-500 shadow-lg text-white flex flex-col gap-4">
                           <div className="flex justify-between items-center">
                             <span className="text-xl font-extrabold">
                               {card.type}
@@ -571,73 +630,9 @@ export default function Dashboard() {
                     ))}
                   </Swiper>
                 </div>
+
               </div>
 
-              {/* Bottom Dots */}
-              <div
-                className={`col-span-1 sm:col-span-2 xl:col-span-3 p-4 flex flex-col sm:flex-row flex-wrap gap-4 items-center justify-center ${
-                  darkMode ? bgClasses.dark[darkColor] : bgClasses.light[lightColor]
-                } ${skinClasses(darkMode)[skin]}`}
-              >
-                {/* Spinners */}
-                <div className="flex gap-3">
-                  <div className="w-8 h-8 rounded-full border-2 border-t-transparent border-indigo-500 animate-spin"></div>
-                  <div className="w-8 h-8 rounded-full border-2 border-t-transparent border-pink-500 animate-spin"></div>
-                  <div className="w-8 h-8 rounded-full border-2 border-t-transparent border-green-500 animate-spin"></div>
-                  <div className="w-8 h-8 rounded-full border-2 border-t-transparent border-orange-500 animate-spin"></div>
-                </div>
-
-                {/* Color pickers */}
-                <div className="flex flex-wrap items-center justify-center gap-4">
-                  {Object.keys(themeColors1).map((color, i) => (
-                    <button
-                      key={`check-${i}`}
-                      onClick={() => setPrimaryColor(color)}
-                      className={`w-7 h-7 rounded-md flex items-center justify-center bg-gradient-to-r ${themeColors[color]} ${
-                        primaryColor === color ? "ring-2 ring-white" : ""
-                      }`}
-                    >
-                      {primaryColor === color && (
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="w-4 h-4"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="white"
-                          strokeWidth={3}
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                        </svg>
-                      )}
-                    </button>
-                  ))}
-
-                  {Object.keys(themeColors1).map((color, i) => (
-                    <button
-                      key={`solid-${i}`}
-                      onClick={() => setPrimaryColor(color)}
-                      className={`w-7 h-7 rounded-full flex items-center justify-center bg-gradient-to-r ${themeColors[color]} ${
-                        primaryColor === color ? "ring-2 ring-white" : ""
-                      } transition-all duration-200`}
-                    >
-                      {primaryColor === color && (
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="w-4 h-4 text-white"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                      )}
-                    </button>
-                  ))}
-                </div>
-              </div>
             </div>
           </div>
         </div>
