@@ -69,8 +69,8 @@ export default function ExploreTemplate() {
     >
       {/* ✅ Page Header */}
       <header className="w-full  text-center py-6  border-gray-700">
-        <h1 className="text-4xl font-bold mb-2">Dashboard Layout</h1>
-        <p className="text-gray-500 text-xl">
+        <h1 className="text-3xl font-bold mb-2">Dashboard Layout</h1>
+        <p className="text-gray-500 text-base">
           TooLex offers a wide range of stunning dashboards, apps, prototypes, components, and forms:
         </p>
       </header>
@@ -105,35 +105,33 @@ export default function ExploreTemplate() {
         {/* Main Content */}
         <main className="flex-1 ml-2 md:ml-6 lg:ml-8 p-4 md:p-6 overflow-y-auto">
           <div className="max-w-7xl mx-auto">
-            <div className="grid gap-12 pb-14 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-6 pb-14 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
               {templates[active]?.map((tpl) => (
                 <div
                   key={tpl.title}
                   onClick={() => window.open(tpl.path, "_blank")}
-                  className="relative rounded-2xl overflow-hidden shadow-lg group cursor-pointer hover:shadow-2xl transition-shadow duration-300"
+                  className="group cursor-pointer"
                 >
                   {/* Image with overlay */}
-                  <div className="relative">
+                  <div className="relative rounded-lg overflow-hidden shadow-lg transition-all duration-300 group-hover:shadow-2xl">
                     <img
                       src={tpl.img}
                       alt={tpl.title}
-                      className="w-full h-52 object-cover transition-transform duration-500 group-hover:scale-110"
+                      className="w-full h-52 object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
                   </div>
 
                   {/* Floating Info Box */}
+
+
                   <div
-                    className="absolute bottom-4 left-1/2 transform -translate-x-1/2 
-                   w-[90%] bg-[#1c1c1e]/80 backdrop-blur-md rounded-xl p-4 
-                   shadow-xl transition-all duration-500 group-hover:-translate-y-2"
+                    className="relative z-10 -mt-8 mx-auto w-[90%] bg-[#1c1c1e]/90 backdrop-blur-md
+               rounded-lg p-2 shadow-lg text-center transition-all duration-500 
+               group-hover:-translate-y-1"
                   >
-                    <h3 className="text-lg font-semibold text-white text-center">
-                      {tpl.title}
-                    </h3>
-                    <p className="text-sm text-gray-300 text-center mt-1">
-                      {tpl.desc}
-                    </p>
+                    <h3 className="text-lg font-semibold text-white">{tpl.title}</h3>
+                    <p className="text-sm text-gray-300 mt-1">{tpl.desc}</p>
                   </div>
                 </div>
               ))}

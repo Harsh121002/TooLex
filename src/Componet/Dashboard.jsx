@@ -78,26 +78,30 @@ export default function Dashboard() {
         className={`min-h-screen p-4 sm:p-6 ${darkMode ? bgClasses.dark[darkColor] : bgClasses.light[lightColor]
           }`}
       >
+        <div class="px-4 pb-10">
+          <h3 class="text-center text-3xl max-md:flex flex-col font-semibold text-white">Unlimited Themes</h3>
+          <p class="text-center mt-2 text-base px-4 max-w-lg mx-auto" style={{ color: "#9ca3af" }}>Toolex lets you easily customize your theme, including color schemes, primary colors, and card skins.</p>
+        </div>
         <div className="max-w-7xl mx-auto">
           {/* Theme Controls */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-4 mb-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-4 mb-10">
             <div className="flex flex-col">
-              <label className="text-sm mb-1">Skin:</label>
+              <label className="text-sm mb-1 text-gray-400">Skin:</label>
               <select
-                className="p-2 rounded border bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100"
+                className="p-2 rounded text-sm border bg-[#131313] text-gray-400"
                 value={skin}
                 onChange={(e) => setSkin(e.target.value)}
               >
-                <option className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100" value="bordered">Bordered</option>
-                <option className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100" value="flat">Flat</option>
-                <option className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100" value="shadow">Shadow</option>
+                <option className="bg-white text-gray-400" value="bordered">Bordered</option>
+                <option className="bg-white text-gray-400" value="flat">Flat</option>
+                <option className="bg-white text-gray-400" value="shadow">Shadow</option>
               </select>
             </div>
 
             <div className="flex flex-col">
-              <label className="text-sm mb-1">Primary Color:</label>
+              <label className="text-sm mb-1 text-gray-400">Primary Color:</label>
               <select
-                className="p-2 rounded border bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100"
+                className="p-2 rounded text-sm border bg-[#131313] text-gray-400"
                 value={primaryColor}
                 onChange={(e) => setPrimaryColor(e.target.value)}
               >
@@ -114,9 +118,9 @@ export default function Dashboard() {
             </div>
 
             <div className="flex flex-col">
-              <label className="text-sm mb-1">Light Color:</label>
+              <label className="text-sm mb-1 text-gray-400">Light Color:</label>
               <select
-                className="p-2 rounded border bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100"
+                className="p-2 rounded text-sm border bg-[#131313] text-gray-400"
                 value={lightColor}
                 onChange={(e) => setLightColor(e.target.value)}
               >
@@ -127,9 +131,9 @@ export default function Dashboard() {
             </div>
 
             <div className="flex flex-col">
-              <label className="text-sm mb-1">Dark Color:</label>
+              <label className="text-sm mb-1 text-gray-400">Dark Color:</label>
               <select
-                className="p-2 rounded border bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100"
+                className="p-2 rounded text-sm border bg-[#131313] text-gray-400"
                 value={darkColor}
                 onChange={(e) => setDarkColor(e.target.value)}
               >
@@ -140,9 +144,9 @@ export default function Dashboard() {
             </div>
 
             <div className="flex flex-col">
-              <label className="text-sm mb-1">Theme Mode:</label>
+              <label className="text-sm mb-1 text-gray-400">Theme Mode:</label>
               <select
-                className="p-2 rounded border bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100"
+                className="p-2 rounded text-sm border bg-[#131313] text-gray-400"
                 value={darkMode ? "dark" : "light"}
                 onChange={(e) => setDarkMode(e.target.value === "dark")}
               >
@@ -247,33 +251,37 @@ export default function Dashboard() {
                     />
                   </div>
                 </div>
-                <div className={`relative p-4 ${skinClasses(darkMode)[skin]}`}>
-                  <h3 className="font-semibold">Load Application</h3>
-                  <p
-                    className="text-sm mt-2 text-gray-400"
-                    style={{
-                      display: "-webkit-box",
-                      WebkitLineClamp: 4,   // limit to 4 rows
-                      WebkitBoxOrient: "vertical",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                    }}
-                  >
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam maiores eligendi,
-                    amet ipsam ipsa officiis asperiores expedita, nostrum alias ad tempore in eveniet
-                    fugiat ut beatae quaerat accusantium! Repudiandae aliquam placeat eius. Voluptas,
-                    ad sunt nulla ducimus delectus facilis accusamus.
-                  </p>
+                <div className={`relative break-words print:border rounded-lg break-inside-avoid bg-gradient-to-r from-pink-400 to-[#4f46e5] p-1 ${skinClasses(darkMode)[skin]}`}>
+
+                  <div className="bg-black h-full p-4">
+                    <h3 className="font-semibold">Load Application</h3>
+                    <p
+                      className="text-sm mt-2 text-gray-400"
+                      style={{
+                        display: "-webkit-box",
+                        WebkitLineClamp: 4,   // limit to 4 rows
+                        WebkitBoxOrient: "vertical",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                      }}
+                    >
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam maiores eligendi,
+                      amet ipsam ipsa officiis asperiores expedita, nostrum alias ad tempore in eveniet
+                      fugiat ut beatae quaerat accusantium! Repudiandae aliquam placeat eius. Voluptas,
+                      ad sunt nulla ducimus delectus facilis accusamus.
+                    </p>
 
 
-                  {/* progress bar container */}
-                  <div className="mt-3 h-2 w-full bg-gray-300 dark:bg-gray-700 rounded overflow-hidden relative">
-                    {/* animated line - only this changes color */}
-                    <div
-                      className={`absolute top-0 left-0 h-2 w-1/3 bg-gradient-to-r ${themeColors[primaryColor]} animate-[slide_2s_linear_infinite]`}
-                    />
+                    {/* progress bar container */}
+                    <div className="mt-3 h-2 w-full bg-gray-300 dark:bg-gray-700 rounded overflow-hidden relative">
+                      {/* animated line - only this changes color */}
+                      <div
+                        className={`absolute top-0 left-0 h-2 w-1/3 bg-gradient-to-r ${themeColors[primaryColor]} animate-[slide_2s_linear_infinite]`}
+                      />
+                    </div>
                   </div>
                 </div>
+
               </div>
               {/* Sign In */}
               {/* 🔑 Sign In Card */}
@@ -515,7 +523,7 @@ export default function Dashboard() {
             <div className="grid-cols-1">
               {/* Card One*/}
               <div
-                className={`relative p-5 bg-gradient-to-tr ${themeColors[primaryColor]} text-white flex flex-col items-center justify-center ${skinClasses(darkMode)[skin]
+                className={`relative p-5 bg-gradient-to-tr ${themeColors[primaryColor]} text-white flex flex-col items-start justify-center ${skinClasses(darkMode)[skin]
                   }`}
               >
                 <div className="w-20 h-20">
@@ -532,7 +540,7 @@ export default function Dashboard() {
                 </div>
                 <p className="mt-5 text-lg font-bold">$31.313</p>
                 <p className="text-sm">Current Balance</p>
-                <button className="mt-4 bg-white/20 px-3 py-1 rounded">
+                <button className="mt-4 border border-white/20 px-3 py-1.5 w-full rounded-full">
                   Get Statement
                 </button>
               </div>

@@ -9,6 +9,10 @@
   --color-dark: #1E293B;   /* navy */
 }
 
+body{
+  font-family: 'Inter' sans-serif !important;
+}
+
 [data-theme="dark"] {
   --background: #0f172a;
   --text: #ffffff;

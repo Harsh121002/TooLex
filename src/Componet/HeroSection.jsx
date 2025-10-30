@@ -9,9 +9,8 @@ export default function HeroSection() {
 
   return (
     <section
-      className={`relative flex flex-col lg:flex-row items-center justify-between min-h-screen overflow-hidden ${
-        darkMode ? bgClasses.dark.black : bgClasses.light.slate
-      }`}
+      className={`relative flex flex-col lg:flex-row items-center justify-between overflow-hidden min-h-screen ${darkMode ? bgClasses.dark.black : bgClasses.light.slate
+        }`}
     >
       {/* Blurred Background Slider for Mobile */}
       <div className="block lg:hidden absolute inset-0 w-full h-full z-0">
@@ -37,15 +36,12 @@ export default function HeroSection() {
             </SwiperSlide>
           ))}
         </Swiper>
-        {/* Optional overlay to make text pop */}
         <div className="absolute inset-0 bg-black/40"></div>
       </div>
 
       {/* Left Content */}
       <div
-        className="relative z-10 flex flex-col items-start max-w-2xl 
-                   px-6 lg:px-16 space-y-8 
-                   mt-20 lg:mt-0"
+        className="relative z-10 flex flex-col justify-center items-start w-full max-w-2xl px-6 lg:px-20 space-y-8 min-h-screen"
       >
         {/* Logo */}
         <div className="flex items-center gap-2">
@@ -64,9 +60,8 @@ export default function HeroSection() {
             />
           </svg>
           <span
-            className={`text-xl font-semibold ${
-              darkMode ? "text-white" : "text-gray-900"
-            }`}
+            className={`text-xl font-semibold ${darkMode ? "text-white" : "text-gray-900"
+              }`}
           >
             TooLex
           </span>
@@ -85,9 +80,8 @@ export default function HeroSection() {
 
         {/* Sub Text */}
         <p
-          className={`text-lg leading-relaxed ${
-            darkMode ? "text-gray-300" : "text-gray-600"
-          }`}
+          className={`text-lg leading-relaxed ${darkMode ? "text-gray-300" : "text-gray-600"
+            }`}
         >
           <a
             href="#"
@@ -116,67 +110,14 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Right Continuous Infinite Slider for Desktop */}
-      <div className="absolute right-0 top-0 h-full w-full lg:w-1/2 overflow-hidden pointer-events-none hidden lg:block">
-        <div className="absolute inset-0 overflow-hidden">
-          <div
-            className="w-full h-full origin-right overflow-hidden"
-            style={{
-              transform:
-                "perspective(1500px) rotateY(-24deg) rotateX(5deg) scale(1.3)",
-            }}
-          >
-            <Swiper
-              direction="vertical"
-              loop={true}
-              speed={10000}
-              autoplay={{
-                delay: 0,
-                disableOnInteraction: false,
-                pauseOnMouseEnter: false,
-              }}
-              freeMode={true}
-              freeModeMomentum={false}
-              slidesPerView={1}
-              spaceBetween={0}
-              modules={[Autoplay]}
-              className="h-full w-full"
-            >
-              {[...Array(3)].map((_, i) => (
-                <React.Fragment key={i}>
-                  <SwiperSlide>
-                    <img
-                      src="/images/black1.png"
-                      alt="Dashboard 1"
-                      className="w-full h-full object-cover"
-                    />
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <img
-                      src="/images/black2.png"
-                      alt="Dashboard 2"
-                      className="w-full h-full object-cover"
-                    />
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <img
-                      src="/images/black3.png"
-                      alt="Dashboard 3"
-                      className="w-full h-full object-cover"
-                    />
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <img
-                      src="/images/black4.png"
-                      alt="Dashboard 4"
-                      className="w-full h-full object-cover"
-                    />
-                  </SwiperSlide>
-                </React.Fragment>
-              ))}
-            </Swiper>
-          </div>
-        </div>
+      {/* Right Continuous Infinite Scrolling Image */}
+      <div className="hidden lg:flex w-[55%] h-screen absolute right-0 top-0 overflow-hidden">
+        <div
+          className="hero-img-preview relative w-full h-full"
+          style={{
+            "--hero-img-src": "url('/images/hero-img.webp')",
+          }}
+        ></div>
       </div>
     </section>
   );
