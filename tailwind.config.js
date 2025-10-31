@@ -12,6 +12,9 @@ module.exports = {
         background: "var(--background)",
         text: "var(--text)",
       },
+      fontFamily: {
+        sans: ['Helvetica', 'Arial', 'ui-sans-serif', 'system-ui'], 
+      },
     },
   },
 };

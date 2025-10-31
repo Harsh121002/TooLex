@@ -7,6 +7,7 @@ import { useTheme } from "../context/ThemeContext";
 import "swiper/css";
 import "swiper/css/pagination";
 import "react-circular-progressbar/dist/styles.css";
+import { Info, Truck, CreditCard, Undo2, User, Scale, Mail, Lock, Heart } from "lucide-react";
 
 export default function Dashboard() {
   const {
@@ -28,7 +29,7 @@ export default function Dashboard() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [activeMenu, setActiveMenu] = useState("Getting start");
-  const [liked, setLiked] = useState(false);
+  const [liked, setLiked] = useState(true);
   const [timeLeft, setTimeLeft] = useState(9 * 3600 + 11 * 60 + 37);
 
   const callSettings = [
@@ -48,6 +49,15 @@ export default function Dashboard() {
     amber: "from-amber-500 to-yellow-500",
     pink: "from-pink-500 to-rose-500",
   };
+
+  const menuItems = [
+    { label: "Getting start", icon: Info },
+    { label: "Shipping", icon: Truck },
+    { label: "Payments", icon: CreditCard },
+    { label: "Returns", icon: Undo2 },
+    { label: "My Account", icon: User },
+    { label: "Copyright & Legal", icon: Scale },
+  ];
 
   const cards = [
     { type: "VISA", amount: "$1,686.66", number: "**** **** **** 7946" },
@@ -75,116 +85,170 @@ export default function Dashboard() {
   return (
     <GoogleOAuthProvider clientId="YOUR_GOOGLE_CLIENT_ID">
       <div
-        className={`min-h-screen p-4 sm:p-6 ${darkMode ? bgClasses.dark[darkColor] : bgClasses.light[lightColor]
+        className={`min-h-screen p-4  sm:p-6 ${darkMode ? bgClasses.dark[darkColor] : bgClasses.light[lightColor]
           }`}
       >
-        <div class="px-4 pb-10">
-          <h3 class="text-center text-3xl max-md:flex flex-col font-semibold text-white">Unlimited Themes</h3>
-          <p class="text-center mt-2 text-base px-4 max-w-lg mx-auto" style={{ color: "#9ca3af" }}>Toolex lets you easily customize your theme, including color schemes, primary colors, and card skins.</p>
+        <div className="px-4 pb-10 transition-all duration-300">
+          <h3
+            className={`text-center text-3xl font-normal max-md:flex flex-col transition-all duration-300
+      ${darkMode ? "text-gray-100" : "text-gray-900"}`}
+          >
+            Unlimited Themes
+          </h3>
+
+          <p
+            className={`text-center mt-2 text-base text-normal px-4 max-w-lg mx-auto transition-all duration-300
+      ${darkMode ? "text-gray-400" : "text-gray-600"}`}
+          >
+            Toolex lets you easily customize your theme, including color schemes, primary colors, and card skins.
+          </p>
         </div>
+
         <div className="max-w-7xl mx-auto">
           {/* Theme Controls */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-4 mb-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-10 transition-all duration-300">
+            {/* Skin Selector */}
             <div className="flex flex-col">
-              <label className="text-sm mb-1 text-gray-400">Skin:</label>
+              <label
+                className={`text-sm mb-1 ${darkMode ? " bg-black text-gray-300" : "text-gray-600"}`}
+              >
+                Skin:
+              </label>
               <select
-                className="p-2 rounded text-sm border bg-[#131313] text-gray-400"
+                className={`p-2 rounded text-sm  border focus:outline-none transition-all duration-200
+        ${darkMode
+                    ? "bg-black text-gray-100 border-gray-700 hover:border-gray-500"
+                    : "bg-white text-gray-800 border-gray-300 hover:border-gray-400"
+                  }`}
                 value={skin}
                 onChange={(e) => setSkin(e.target.value)}
               >
-                <option className="bg-white text-gray-400" value="bordered">Bordered</option>
-                <option className="bg-white text-gray-400" value="flat">Flat</option>
-                <option className="bg-white text-gray-400" value="shadow">Shadow</option>
+                <option value="bordered">Bordered</option>
+                <option value="flat">Flat</option>
+                <option value="shadow">Shadow</option>
               </select>
             </div>
 
+            {/* Primary Color */}
             <div className="flex flex-col">
-              <label className="text-sm mb-1 text-gray-400">Primary Color:</label>
+              <label
+                className={`text-sm mb-1 ${darkMode ? " bg-black text-gray-300" : "text-gray-600"}`}
+              >
+                Primary Color:
+              </label>
               <select
-                className="p-2 rounded text-sm border bg-[#131313] text-gray-400"
+                className={`p-2 rounded text-sm border focus:outline-none transition-all duration-200
+        ${darkMode
+                    ? "bg-black text-gray-100 border-gray-700 hover:border-gray-500"
+                    : "bg-white text-gray-800 border-gray-300 hover:border-gray-400"
+                  }`}
                 value={primaryColor}
                 onChange={(e) => setPrimaryColor(e.target.value)}
               >
                 {colorKeys.map((color) => (
-                  <option
-                    key={color}
-                    value={color}
-                    className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100"
-                  >
+                  <option key={color} value={color}>
                     {color}
                   </option>
                 ))}
               </select>
             </div>
 
+            {/* Light Color */}
             <div className="flex flex-col">
-              <label className="text-sm mb-1 text-gray-400">Light Color:</label>
+              <label
+                className={`text-sm mb-1 ${darkMode ? " bg-black text-gray-300" : "text-gray-600"}`}
+              >
+                Light Color:
+              </label>
               <select
-                className="p-2 rounded text-sm border bg-[#131313] text-gray-400"
+                className={`p-2 rounded text-sm border focus:outline-none transition-all duration-200
+        ${darkMode
+                    ? "bg-black text-gray-100 border-gray-700 hover:border-gray-500"
+                    : "bg-white text-gray-800 border-gray-300 hover:border-gray-400"
+                  }`}
                 value={lightColor}
                 onChange={(e) => setLightColor(e.target.value)}
               >
-                <option className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100" value="slate">Slate</option>
-                <option className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100" value="zinc">Zinc</option>
-                <option className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100" value="gray">Gray</option>
+                <option value="slate">Slate</option>
+                <option value="zinc">Zinc</option>
+                <option value="gray">Gray</option>
               </select>
             </div>
 
+            {/* Dark Color */}
             <div className="flex flex-col">
-              <label className="text-sm mb-1 text-gray-400">Dark Color:</label>
+              <label
+                className={`text-sm mb-1 ${darkMode ? " bg-black text-gray-300" : "text-gray-600"}`}
+              >
+                Dark Color:
+              </label>
               <select
-                className="p-2 rounded text-sm border bg-[#131313] text-gray-400"
+                className={`p-2 rounded text-sm border focus:outline-none transition-all duration-200
+        ${darkMode
+                    ? "bg-black text-gray-100 border-gray-700 hover:border-gray-500"
+                    : "bg-white text-gray-800 border-gray-300 hover:border-gray-400"
+                  }`}
                 value={darkColor}
                 onChange={(e) => setDarkColor(e.target.value)}
               >
-                <option className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100" value="black">Black</option>
-                <option className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100" value="slate">Slate</option>
-                <option className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100" value="zinc">Zinc</option>
+                <option value="black">Black</option>
+                <option value="slate">Slate</option>
+                <option value="zinc">Zinc</option>
               </select>
             </div>
 
+            {/* Theme Mode */}
             <div className="flex flex-col">
-              <label className="text-sm mb-1 text-gray-400">Theme Mode:</label>
+              <label
+                className={`text-sm mb-1 ${darkMode ? " bg-black text-gray-300" : "text-gray-600"}`}
+              >
+                Theme Mode:
+              </label>
               <select
-                className="p-2 rounded text-sm border bg-[#131313] text-gray-400"
+                className={`p-2 rounded text-sm border focus:outline-none transition-all duration-200
+        ${darkMode
+                    ? "bg-black text-gray-100 border-gray-700 hover:border-gray-500"
+                    : "bg-white text-gray-800 border-gray-300 hover:border-gray-400"
+                  }`}
                 value={darkMode ? "dark" : "light"}
                 onChange={(e) => setDarkMode(e.target.value === "dark")}
               >
-                <option className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100" value="light">Light</option>
-                <option className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100" value="dark">Dark</option>
+                <option value="light">Light</option>
+                <option value="dark">Dark</option>
               </select>
             </div>
           </div>
 
 
+
+
           {/* 📦 Main Layout */}
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-4 items-stretch border border-gray-400 rounded-md p-4">
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-4 items-stretch border border-white/20  rounded-md p-4">
             {/* Sidebar */}
             <div className="col-span-1 flex flex-col gap-4 h-full">
               {/* Admin Menu */}
               <div className={`relative p-4 ${skinClasses(darkMode)[skin]}`}>
-                <h3 className="font-semibold mb-4">Admin Menu</h3>
+                <h3 className="font-normal mb-4">Admin Menu</h3>
                 <ul className="space-y-2">
-                  {["Getting start", "Shipping", "Payments", "Returns", "My Account", "Copyright & Legal"].map(
-                    (label) => (
-                      <li
-                        key={label}
-                        onClick={() => setActiveMenu(label)}
-                        className={`p-2 rounded cursor-pointer transition ${activeMenu === label
-                          ? `bg-gradient-to-r ${themeColors[primaryColor]} text-white`
-                          : "hover:bg-gray-600/20"
-                          }`}
-                      >
-                        {label}
-                      </li>
-                    )
-                  )}
+                  {menuItems.map(({ label, icon: Icon }) => (
+                    <li
+                      key={label}
+                      onClick={() => setActiveMenu(label)}
+                      className={`flex items-center gap-2 p-2 rounded cursor-pointer transition-all duration-200 ${activeMenu === label
+                        ? `bg-gradient-to-r ${themeColors[primaryColor]} text-white`
+                        : "hover:bg-gray-600/20"
+                        }`}
+                    >
+                      <Icon size={16} className={`${activeMenu === label ? "text-white" : "text-gray-400"}`} />
+                      <span>{label}</span>
+                    </li>
+                  ))}
                 </ul>
               </div>
 
               {/* Call Settings */}
               <div className={`relative p-4 flex flex-col flex-1 ${skinClasses(darkMode)[skin]}`}>
-                <h3 className="font-semibold mb-4">Call Settings</h3>
+                <h3 className="font-normal mb-4">Call Settings</h3>
                 {callSettings.map((setting, i) => (
                   <div key={i} className="flex justify-between items-center mb-3">
                     <span>{setting.label}</span>
@@ -224,42 +288,42 @@ export default function Dashboard() {
                     June 23, 2021
                   </div>
 
-                  <h3 className="font-semibold mt-2">UI/UX Design Conference</h3>
+                  <h3 className="font-medium mt-2">UI/UX Design Conference</h3>
 
                   <div className="mt-3 flex gap-2">
-                    <span className="px-2 py-1 rounded bg-yellow-600/20 text-yellow-400 text-xs font-medium">
+                    <span className="px-2 py-1 rounded bg-yellow-600/20 text-yellow-400 text-xs font-normal">
                       UI/UX Design
                     </span>
-                    <span className="px-2 py-1 rounded bg-emerald-600/20 text-emerald-400 text-xs font-medium">
+                    <span className="px-2 py-1 rounded bg-emerald-600/20 text-emerald-400 text-xs font-normal">
                       Mobile
                     </span>
                   </div>
 
-                  <div className="mt-4 flex -space-x-2">
+                  <div className="mt-8 mb-0 flex -space-x-3">
                     <img
-                      className="w-8 h-8 rounded-full border-2 border-gray-800"
+                      className="w-7 h-7 rounded-full border-2 border-black"
                       src="https://randomuser.me/api/portraits/men/32.jpg"
                       alt="user"
                     />
-                    <div className="w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center border-2 border-gray-800 text-xs font-semibold">
+                    <div className="w-7 h-7 rounded-full bg-blue-500 text-white flex items-center justify-center border-2 border-black text-xs font-normal">
                       JL
                     </div>
                     <img
-                      className="w-8 h-8 rounded-full border-2 border-gray-800"
+                      className="w-7 h-7 rounded-full border-2 border-black"
                       src="https://randomuser.me/api/portraits/men/45.jpg"
                       alt="user"
                     />
                   </div>
                 </div>
-                <div className={`relative break-words print:border rounded-lg break-inside-avoid bg-gradient-to-r from-pink-400 to-[#4f46e5] p-1 ${skinClasses(darkMode)[skin]}`}>
+                <div className={`relative break-words print border-[0.5px] rounded-lg break-inside-avoid bg-gradient-to-r from-pink-400 to-[#4f46e5] p-1 ${skinClasses(darkMode)[skin]}`}>
 
                   <div className="bg-black h-full p-4">
-                    <h3 className="font-semibold">Load Application</h3>
+                    <h3 className="font-normal">Load Application</h3>
                     <p
-                      className="text-sm mt-2 text-gray-400"
+                      className="text-md mt-2 text-gray-400"
                       style={{
                         display: "-webkit-box",
-                        WebkitLineClamp: 4,   // limit to 4 rows
+                        WebkitLineClamp: 3,   // limit to 4 rows
                         WebkitBoxOrient: "vertical",
                         overflow: "hidden",
                         textOverflow: "ellipsis",
@@ -273,10 +337,10 @@ export default function Dashboard() {
 
 
                     {/* progress bar container */}
-                    <div className="mt-3 h-2 w-full bg-gray-300 dark:bg-gray-700 rounded overflow-hidden relative">
+                    <div className="mt-6 h-1 w-full bg-gray-300 dark:bg-gray-700 rounded overflow-hidden relative">
                       {/* animated line - only this changes color */}
                       <div
-                        className={`absolute top-0 left-0 h-2 w-1/3 bg-gradient-to-r ${themeColors[primaryColor]} animate-[slide_2s_linear_infinite]`}
+                        className={`absolute top-0 left-0 h-1 w-1/3 bg-gradient-to-r ${themeColors[primaryColor]} animate-[slide_2s_linear_infinite]`}
                       />
                     </div>
                   </div>
@@ -286,31 +350,21 @@ export default function Dashboard() {
               {/* Sign In */}
               {/* 🔑 Sign In Card */}
               <div className={`relative p-4 ${skinClasses(darkMode)[skin]}`}>
-                <h3 className="font-semibold mb-3">Sign In</h3>
+                <h3 className="font-normal mb-3">Sign In</h3>
 
                 {/* Username */}
                 <div className="relative mt-2">
                   <input
                     type="text"
                     placeholder="Enter Username"
-                    className="w-full pl-10 p-2 rounded border bg-transparent"
+                    className="w-full pl-10 p-2 rounded border border-white/20 bg-transparent focus:outline-none focus:border-blue-400 transition-all duration-200"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                   />
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M16 12A4 4 0 118 12a4 4 0 018 0zm-4 4v1a4 4 0 01-4 4H6"
-                    />
-                  </svg>
+                  <Mail
+                    size={18}
+                    className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                  />
                 </div>
 
                 {/* Password */}
@@ -318,24 +372,14 @@ export default function Dashboard() {
                   <input
                     type="password"
                     placeholder="Enter Password"
-                    className="w-full pl-10 p-2 rounded border bg-transparent"
+                    className="w-full pl-10 p-2 rounded border border-white/20 bg-transparent focus:outline-none focus:border-blue-400 transition-all duration-200"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                   />
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2h-1V9a5 5 0 00-10 0v2H6a2 2 0 00-2 2v6a2 2 0 002 2z"
-                    />
-                  </svg>
+                  <Lock
+                    size={18}
+                    className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                  />
                 </div>
 
                 {/* Submit */}
@@ -354,11 +398,11 @@ export default function Dashboard() {
 
                 {/* Social Login */}
                 <div className="flex gap-3">
-                  <button className="flex-1 flex items-center justify-center gap-2 border rounded p-2">
+                  <button className="flex-1 flex items-center justify-center gap-2 border border-white/20 rounded p-2">
                     <img src="https://www.svgrepo.com/show/475656/google-color.svg" className="w-5 h-5" />
                     Google
                   </button>
-                  <button className="flex-1 flex items-center justify-center gap-2 border rounded p-2">
+                  <button className="flex-1 flex items-center justify-center gap-2 border border-white/20 rounded p-2">
                     <img src="https://www.svgrepo.com/show/475654/github-color.svg" className="w-5 h-5" />
                     Github
                   </button>
@@ -374,50 +418,27 @@ export default function Dashboard() {
                     <img
                       src="https://randomuser.me/api/portraits/men/85.jpg"
                       alt="avatar"
-                      className="w-10 h-10 rounded-full border border-gray-500"
+                      className="w-10 h-10 rounded-full border border-white/20 border-gray-500"
                     />
                     <div>
-                      <p className="font-semibold text-sm">Travis Fuller</p>
+                      <p className="font-normal text-sm">Travis Fuller</p>
                       <p className="text-xs text-gray-400">1259 items</p>
                     </div>
                   </div>
 
-                  {/* ❤️ Like/Dislike button */}
-                  <button onClick={() => setLiked(!liked)}>
-                    {liked ? (
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="w-6 h-6 text-red-500"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                      >
-                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 
-            2 8.5 2 5.42 4.42 3 7.5 3c1.74 
-            0 3.41.81 4.5 2.09C13.09 3.81 
-            14.76 3 16.5 3 19.58 3 22 
-            5.42 22 8.5c0 3.78-3.4 
-            6.86-8.55 11.54L12 21.35z" />
-                      </svg>
-                    ) : (
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="w-6 h-6 text-gray-400"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={2}
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M4.318 6.318a4.5 4.5 0 
-              016.364 0L12 7.636l1.318-1.318a4.5 
-              4.5 0 116.364 6.364L12 
-              21.364l-7.682-7.682a4.5 
-              4.5 0 010-6.364z"
-                        />
-                      </svg>
-                    )}
+                  {/*  Like/Dislike button */}
+                  <button
+                    onClick={() => setLiked(!liked)}
+                    className={`p-2 rounded-md transition-all duration-300 
+        ${liked ? "bg-gray-800" : "bg-gray-700/10"} 
+        `}
+                  >
+                    <Heart
+                      size={22}
+                      className={`transition-colors duration-300 ${liked ? "text-red-500 fill-red-500" : "text-gray-300"
+                        }`}
+                      fill={liked ? "currentColor" : "none"}
+                    />
                   </button>
                 </div>
 
@@ -434,7 +455,9 @@ export default function Dashboard() {
 
                 {/* Footer */}
                 <div className="mt-4">
-                  <h3 className="font-bold text-gray-600">The Runner #265</h3>
+                  <h3 className="font-normal text-gray-200 hover:text-indigo-500">The Runner #265</h3>
+
+                  <hr className="border border-gray-800/50 mt-3" />
 
                   <div className="flex items-center justify-between mt-2">
                     {/* ⏰ Countdown */}
@@ -449,9 +472,9 @@ export default function Dashboard() {
                     </div>
 
                     {/* 💰 ETH Price */}
-                    <div className=" flex flex-col items-center gap-1 font-bold text-indigo-400">
-                      <span>Highest Bid</span>
-                      <span>1.49 ETH</span>
+                    <div className=" flex flex-col items-center gap-1 font-normal ">
+                      <span className="text-gray-400 text-sm">Highest Bid</span>
+                      <span className="text-indigo-400 text-lg">1.49 ETH</span>
                     </div>
                   </div>
                 </div>
@@ -538,9 +561,9 @@ export default function Dashboard() {
                     })}
                   />
                 </div>
-                <p className="mt-5 text-lg font-bold">$31.313</p>
+                <p className="mt-5 text-lg font-normal">$31.313</p>
                 <p className="text-sm">Current Balance</p>
-                <button className="mt-4 border border-white/20 px-3 py-1.5 w-full rounded-full">
+                <button className="mt-4 border border-white/20 border-white/20 px-3 py-1.5 w-full rounded-full">
                   Get Statement
                 </button>
               </div>
@@ -552,7 +575,7 @@ export default function Dashboard() {
     ${skinClasses(darkMode)[skin]}`}
                 >
                   <div>
-                    <h3 className="font-semibold">Pay App Wages</h3>
+                    <h3 className="font-normal">Pay App Wages</h3>
                     <div className="flex gap-2 mt-2">
                       <span className="flex items-center gap-1 text-xs px-2 py-1 rounded bg-indigo-900 text-indigo-300">
                         <svg
@@ -588,7 +611,7 @@ export default function Dashboard() {
                       src="https://randomuser.me/api/portraits/men/45.jpg"
                       alt="user2"
                     />
-                    <div className="w-8 h-8 rounded-full bg-orange-600 flex items-center justify-center text-white text-xs font-bold border-2 border-current">
+                    <div className="w-8 h-8 rounded-full bg-orange-600 flex items-center justify-center text-white text-xs font-normal border-2 border-current">
                       JD
                     </div>
                   </div>
@@ -598,7 +621,7 @@ export default function Dashboard() {
                   className={`relative p-5 bg-gradient-to-r from-pink-600 to-purple-700 text-white ${skinClasses(darkMode)[skin]
                     }`}
                 >
-                  <h3 className="font-semibold mb-3">Banking Cards</h3>
+                  <h3 className="font-normal mb-3">Banking Cards</h3>
                   <Swiper
                     spaceBetween={16}
                     slidesPerView={1.3}
@@ -629,7 +652,7 @@ export default function Dashboard() {
                               />
                             </svg>
                           </div>
-                          <p className="text-3xl font-bold">{card.amount}</p>
+                          <p className="text-3xl font-normal">{card.amount}</p>
                           <p className="tracking-widest text-sm opacity-90">
                             {card.number}
                           </p>

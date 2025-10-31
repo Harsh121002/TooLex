@@ -20,9 +20,9 @@ export function ThemeProvider({ children }) {
 
   const bgClasses = {
     light: {
-      slate: "bg-slate-100 text-gray-900",
-      zinc: "bg-zinc-100 text-gray-900",
-      gray: "bg-gray-100 text-gray-900",
+      slate: "bg-slate-300 text-gray-900",
+      zinc: "bg-zinc-300 text-gray-900",
+      gray: "bg-gray-300 text-gray-900",
     },
     dark: {
       black: "bg-black text-white",
@@ -33,7 +33,7 @@ export function ThemeProvider({ children }) {
 
   const skinClasses = (dark) => ({
     bordered: `${
-      dark ? "bg-[#131314] text-white" : "bg-[#f8f9fa] text-gray-900"
+      dark ? "bg-black text-white" : "bg-[#f8f9fa] text-gray-900"
     } border border-gray-700 rounded-md`,
     flat: "rounded-lg border-none shadow-none bg-transparent",
     shadow: `${
