@@ -10,7 +10,7 @@ export function ThemeProvider({ children }) {
   const [darkColor, setDarkColor] = useState("black");
 
   const themeColors = {
-    indigo: "from-indigo-500 to-indigo-500",
+    indigo: "from-indigo-600 to-indigo-600",
     blue: "from-blue-500 to-blue-500",
     green: "from-green-500 to-green-500",
     purple: "from-purple-500 to-purple-500",

@@ -575,7 +575,7 @@ export default function Dashboard() {
                   <div className="bg-black h-full p-4">
                     <h3 className="font-medium text-sm+">Load Application</h3>
                     <p
-                      className="text-normal mt-3 text-gray-300"
+                      className="text-normal mt-3 text-gray-400"
                       style={{
                         display: "-webkit-box",
                         WebkitLineClamp: 3,   // limit to 4 rows
@@ -875,41 +875,36 @@ export default function Dashboard() {
 
                   <div className="flex mt-3 -space-x-2">
                     <img
-                      className="w-8 h-8 rounded-full border-2 border-current"
+                      className="w-7 h-7 rounded-full border-2 border-current"
                       src="https://randomuser.me/api/portraits/men/32.jpg"
                       alt="user1"
                     />
                     <img
-                      className="w-8 h-8 rounded-full border-2 border-current"
+                      className="w-7 h-7 rounded-full border-2 border-current"
                       src="https://randomuser.me/api/portraits/men/45.jpg"
                       alt="user2"
                     />
-                    <div className="w-8 h-8 rounded-full bg-orange-600 flex items-center justify-center text-white text-xs font-normal border-2 border-current">
+                    <div className="w-7 h-7 rounded-full bg-orange-600 flex items-center justify-center text-white text-xs font-normal border-2 border-current">
                       JD
                     </div>
                   </div>
                 </div>
 
                 <div
-                  className={`relative px-4 py-7 bg-gradient-to-r from-pink-600 to-purple-700 text-white ${skinClasses(darkMode)[skin]
+                  className={`relative px-4 py-7 bg-gradient-to-r from-fuchsia-600 to-pink-600 text-white ${skinClasses(darkMode)[skin]
                     }`}
                 >
                   <h3 className="font-medium text-base mb-3">Banking Cards</h3>
                   <Swiper
                     spaceBetween={12}
                     slidesPerView={1.2}
-                    pagination={{ clickable: true }}
-                    modules={[Pagination]}
                     className="w-full"
-
                   >
                     {cards.map((card, idx) => (
                       <SwiperSlide key={idx}>
-                        <div className="rounded-lg p-6 bg-gradient-to-r from-pink-500 to-purple-500 shadow-lg text-white flex flex-col gap-2">
+                        <div className="rounded-lg p-6 bg-gradient-to-br from-[#ffffff55] to-[#ffffff20] h-32 w-56 shadow-lg text-white flex flex-col gap-2">
                           <div className="flex justify-between items-center">
-                            <span className="text-xl font-extrabold">
-                              {card.type}
-                            </span>
+                            <span className="text-xl font-extrabold">{card.type}</span>
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               className="w-6 h-6"
@@ -925,16 +920,15 @@ export default function Dashboard() {
                               />
                             </svg>
                           </div>
-                         <div>
-                           <p className="text-lg font-semibold tracking-wide">{card.amount}</p>
-                          <p className="mt-1 text-xs font-medium">
-                            {card.number}
-                          </p>
-                         </div>
+                          <div>
+                            <p className="text-lg font-semibold tracking-wide">{card.amount}</p>
+                            <p className="mt-1 text-xs font-medium">{card.number}</p>
+                          </div>
                         </div>
                       </SwiperSlide>
                     ))}
                   </Swiper>
+
                 </div>
 
               </div>

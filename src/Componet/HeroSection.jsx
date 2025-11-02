@@ -68,24 +68,25 @@ export default function HeroSection() {
         </div>
 
         {/* Heading */}
-        <h1 className="text-4xl  md:text-5xl font-extrabold leading-tight">
+        <h1 className="text-3xl  md:text-5xl font-bold leading-tight">
           A Complete Admin UI Kit built on{" "}
-          <span className="text-pink-400">React</span> &{" "}
           <span
-            className={`bg-gradient-to-r ${themeColors[primaryColor]} bg-clip-text text-transparent`}
+            className={`bg-gradient-to-r from-pink-400 ${themeColors[primaryColor]} bg-clip-text text-transparent`}
           >
-            Tailwind CSS.
+            React & Tailwind CSS.
           </span>
+
+
         </h1>
 
         {/* Sub Text */}
         <p
-          className={`text-lg leading-relaxed ${darkMode ? "text-gray-300" : "text-gray-600"
+          className={`text-lg text-base leading-relaxed ${darkMode ? "text-gray-300" : "text-gray-600"
             }`}
         >
           <a
             href="#"
-            className="font-medium underline underline-offset-2 hover:text-indigo-500"
+            className="font-medium text-base underline underline-offset-2 hover:text-indigo-500"
           >
             Tailux
           </a>{" "}
