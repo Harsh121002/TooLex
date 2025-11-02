@@ -85,15 +85,17 @@ export default function FeatureGrid() {
           {features.map((f, idx) => (
             <div
               key={idx}
-              className={`rounded-xl p-5 shadow-md border transition duration-300 hover:shadow-lg flex flex-col items-start max-w-sm w-full
-                ${darkMode ? "bg-black border-gray-700 text-gray-200" : "bg-white border-gray-200 text-gray-900"}
-              `}
+              className={`rounded-xl p-5 shadow-md border  transition duration-300 hover:shadow-lg flex flex-col items-start max-w-sm w-full
+                ${darkMode ? "bg-black border-gray-800 text-gray-200" : "bg-white border-gray-200 text-gray-900"}
+                      `}
+            style={{ borderWidth: "0.8px" }}
+          
             >
               {f.img && (
                 <img
                   src={f.img}
                   alt={f.title}
-                  className="mb-4 w-full h-48 object-cover rounded-lg bg-gray-100"
+                  className="mb-4 w-full h-52 object-cover rounded-lg bg-gray-100"
                 />
               )}
               <h3 className="font-bold text-lg mb-2">{f.title}</h3>
