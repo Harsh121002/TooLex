@@ -41,7 +41,7 @@ export default function HeroSection() {
 
       {/* Left Content */}
       <div
-        className="relative z-10 flex flex-col justify-center items-start w-full max-w-2xl px-6 lg:px-20 space-y-8 min-h-screen"
+        className="relative z-10 flex flex-col justify-center items-start w-full max-w-4xl px-5 lg:px-15 space-y-8 min-h-screen"
       >
         {/* Logo */}
         <div className="flex items-center gap-2">
@@ -68,7 +68,7 @@ export default function HeroSection() {
         </div>
 
         {/* Heading */}
-        <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
+        <h1 className="text-4xl  md:text-5xl font-extrabold leading-tight">
           A Complete Admin UI Kit built on{" "}
           <span className="text-pink-400">React</span> &{" "}
           <span

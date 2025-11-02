@@ -7,7 +7,10 @@ import { useTheme } from "../context/ThemeContext";
 import "swiper/css";
 import "swiper/css/pagination";
 import "react-circular-progressbar/dist/styles.css";
-import { Info, Truck, CreditCard, Undo2, User, Scale, Mail, Lock, Heart } from "lucide-react";
+import { Info, Truck, CreditCard, Undo2, User, Scale, Mail, Lock, Heart, ChevronDown } from "lucide-react";
+import { Listbox, Transition } from "@headlessui/react";
+import { Check } from "lucide-react"
+import { Fragment } from "react";
 
 export default function Dashboard() {
   const {
@@ -90,14 +93,14 @@ export default function Dashboard() {
       >
         <div className="px-4 pb-10 transition-all duration-300">
           <h3
-            className={`text-center text-3xl font-normal max-md:flex flex-col transition-all duration-300
+            className={`text-center text-3xl font-semibold max-md:flex flex-col transition-all duration-300
       ${darkMode ? "text-gray-100" : "text-gray-900"}`}
           >
             Unlimited Themes
           </h3>
 
           <p
-            className={`text-center mt-2 text-base text-normal px-4 max-w-lg mx-auto transition-all duration-300
+            className={`text-center mt-2 text-base  px-4 max-w-lg mx-auto transition-all duration-300
       ${darkMode ? "text-gray-400" : "text-gray-600"}`}
           >
             Toolex lets you easily customize your theme, including color schemes, primary colors, and card skins.
@@ -107,116 +110,368 @@ export default function Dashboard() {
         <div className="max-w-7xl mx-auto">
           {/* Theme Controls */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-10 transition-all duration-300">
+
             {/* Skin Selector */}
             <div className="flex flex-col">
               <label
-                className={`text-sm mb-1 ${darkMode ? " bg-black text-gray-300" : "text-gray-600"}`}
+                className={`text-sm mb-1 ${darkMode ? "text-gray-300" : "text-gray-600"
+                  }`}
               >
                 Skin:
               </label>
-              <select
-                className={`p-2 rounded text-sm  border focus:outline-none transition-all duration-200
-        ${darkMode
-                    ? "bg-black text-gray-100 border-gray-700 hover:border-gray-500"
-                    : "bg-white text-gray-800 border-gray-300 hover:border-gray-400"
-                  }`}
-                value={skin}
-                onChange={(e) => setSkin(e.target.value)}
-              >
-                <option value="bordered">Bordered</option>
-                <option value="flat">Flat</option>
-                <option value="shadow">Shadow</option>
-              </select>
+
+              <Listbox value={skin} onChange={setSkin}>
+                <div className="relative">
+                  <Listbox.Button
+                    className={`w-full flex items-center justify-between p-2 rounded border text-sm transition-all duration-200
+          ${darkMode
+                        ? "bg-black text-gray-100 border-gray-700 hover:border-gray-500"
+                        : "bg-white text-gray-800 border-gray-300 hover:border-gray-400"
+                      }`}
+                  >
+                    {skin}
+                    <ChevronDown className="w-4 h-4 opacity-60" />
+                  </Listbox.Button>
+
+                  <Transition
+                    as={Fragment}
+                    leave="transition ease-in duration-100"
+                    leaveFrom="opacity-100"
+                    leaveTo="opacity-0"
+                  >
+                    <Listbox.Options
+                      className={`absolute z-10 mt-1 w-full rounded-md shadow-lg overflow-hidden 
+            ${darkMode
+                          ? "bg-black border border-gray-700 text-gray-100"
+                          : "bg-white border border-gray-200 text-gray-800"
+                        }`}
+                    >
+                      {["bordered", "shadow"].map((opt) => (
+                        <Listbox.Option
+                          key={opt}
+                          value={opt}
+                          className={({ active }) =>
+                            `cursor-pointer select-none relative  py-1 pl-8  pr-4 ${active
+                              ? darkMode
+                                ? `bg-gradient-to-r ${themeColors[primaryColor]}`
+                                : `bg-gradient-to-r ${themeColors[primaryColor]}`
+                              : ""
+                            }`
+                          }
+                        >
+                          {({ selected }) => (
+                            <>
+                              <span
+                                className={`block truncate ${selected ? "font-normal" : "font-normal"
+                                  }`}
+                              >
+                                {opt.charAt(0).toUpperCase() + opt.slice(1)}
+                              </span>
+                              {selected && (
+                                <span className="absolute inset-y-0 right-2 flex items-center">
+                                  <Check className="w-4 h-4" />
+                                </span>
+                              )}
+                            </>
+                          )}
+                        </Listbox.Option>
+                      ))}
+                    </Listbox.Options>
+                  </Transition>
+                </div>
+              </Listbox>
             </div>
 
-            {/* Primary Color */}
+            {/* Primary Color (Headless UI version) */}
             <div className="flex flex-col">
               <label
-                className={`text-sm mb-1 ${darkMode ? " bg-black text-gray-300" : "text-gray-600"}`}
+                className={`text-sm mb-1 ${darkMode ? "text-gray-300" : "text-gray-600"
+                  }`}
               >
                 Primary Color:
               </label>
-              <select
-                className={`p-2 rounded text-sm border focus:outline-none transition-all duration-200
-        ${darkMode
-                    ? "bg-black text-gray-100 border-gray-700 hover:border-gray-500"
-                    : "bg-white text-gray-800 border-gray-300 hover:border-gray-400"
-                  }`}
-                value={primaryColor}
-                onChange={(e) => setPrimaryColor(e.target.value)}
-              >
-                {colorKeys.map((color) => (
-                  <option key={color} value={color}>
-                    {color}
-                  </option>
-                ))}
-              </select>
+              <Listbox value={primaryColor} onChange={setPrimaryColor}>
+                <div className="relative">
+                  <Listbox.Button
+                    className={`w-full flex items-center justify-between p-2 rounded border text-sm transition-all duration-200
+          ${darkMode
+                        ? "bg-black text-gray-100 border-gray-700 hover:border-gray-500"
+                        : "bg-white text-gray-800 border-gray-300 hover:border-gray-400"
+                      }`}
+                  >
+                    {primaryColor}
+                    <ChevronDown size={16} className="opacity-60" />
+                  </Listbox.Button>
+
+                  <Transition
+                    leave="transition ease-in duration-100"
+                    leaveFrom="opacity-100"
+                    leaveTo="opacity-0"
+                  >
+                    <Listbox.Options
+                      className={`absolute z-10 mt-1 w-full rounded-md shadow-lg 
+            ${darkMode
+                          ? "bg-black border border-gray-700 text-gray-100"
+                          : "bg-white border border-gray-200 text-gray-800"
+                        }`}
+                    >
+                      {Object.keys(themeColors).map((color) => (
+                        <Listbox.Option
+                          key={color}
+                          value={color}
+                          className={({ active }) =>
+                            `cursor-pointer select-none relative  py-1 pl-8  pr-4 ${active
+                              ? darkMode
+                                ? `border-none bg-gradient-to-r ${themeColors[primaryColor]}`
+                                : `bg-gradient-to-r ${themeColors[primaryColor]}`
+                              : ""
+                            }`
+                          }
+                        >
+                          {({ selected }) => (
+                            <>
+                              <span
+                                className={`block truncate ${selected ? "font-semibold" : "font-normal"
+                                  }`}
+                              >
+                                {color}
+                              </span>
+                              {selected ? (
+                                <span className="absolute inset-y-0 right-2 flex items-center">
+                                  <Check size={14} />
+                                </span>
+                              ) : null}
+                            </>
+                          )}
+                        </Listbox.Option>
+                      ))}
+                    </Listbox.Options>
+                  </Transition>
+                </div>
+              </Listbox>
             </div>
 
-            {/* Light Color */}
+            {/* Light Color Selector */}
             <div className="flex flex-col">
               <label
-                className={`text-sm mb-1 ${darkMode ? " bg-black text-gray-300" : "text-gray-600"}`}
+                className={`text-sm mb-1 ${darkMode ? "text-gray-300" : "text-gray-600"
+                  }`}
               >
                 Light Color:
               </label>
-              <select
-                className={`p-2 rounded text-sm border focus:outline-none transition-all duration-200
-        ${darkMode
-                    ? "bg-black text-gray-100 border-gray-700 hover:border-gray-500"
-                    : "bg-white text-gray-800 border-gray-300 hover:border-gray-400"
-                  }`}
-                value={lightColor}
-                onChange={(e) => setLightColor(e.target.value)}
-              >
-                <option value="slate">Slate</option>
-                <option value="zinc">Zinc</option>
-                <option value="gray">Gray</option>
-              </select>
+
+              <Listbox value={lightColor} onChange={setLightColor}>
+                <div className="relative">
+                  {/* Dropdown Button */}
+                  <Listbox.Button
+                    className={`w-full flex items-center justify-between p-2 rounded-md text-sm transition-all duration-200 border border-[0.8px]
+          ${darkMode
+                        ? "bg-black text-gray-100 border-gray-600 hover:border-gray-400"
+                        : "bg-white text-gray-800 border-gray-300 hover:border-gray-400"
+                      }`}
+                  >
+                    {lightColor.charAt(0).toUpperCase() + lightColor.slice(1)}
+                    <ChevronDown className="w-4 h-4 opacity-60" />
+                  </Listbox.Button>
+
+                  <Transition
+                    as={Fragment}
+                    leave="transition ease-in duration-100"
+                    leaveFrom="opacity-100"
+                    leaveTo="opacity-0"
+                  >
+                    <Listbox.Options
+                      className={`absolute z-10 mt-1 w-full rounded-md shadow-md border border-[0.8px] overflow-hidden 
+            ${darkMode
+                          ? "bg-black border-gray-700 text-gray-100"
+                          : "bg-white border-gray-200 text-gray-800"
+                        }`}
+                    >
+                      {["slate", "zinc", "gray"].map((opt) => (
+                        <Listbox.Option
+                          key={opt}
+                          value={opt}
+                          className={({ active }) =>
+                            `cursor-pointer select-none relative  py-1 pl-8  pr-4 ${active
+                              ? darkMode
+                                ? `border-none bg-gradient-to-r ${themeColors[primaryColor]}`
+                                : `bg-gradient-to-r ${themeColors[primaryColor]}`
+                              : ""
+                            }`
+                          }
+                        >
+                          {({ selected }) => (
+                            <>
+                              <span
+                                className={`block truncate ${selected ? "font-semibold" : "font-normal"
+                                  }`}
+                              >
+                                {opt.charAt(0).toUpperCase() + opt.slice(1)}
+                              </span>
+                              {selected && (
+                                <span className="absolute inset-y-0 right-2 flex items-center">
+                                  <Check className="w-4 h-4" />
+                                </span>
+                              )}
+                            </>
+                          )}
+                        </Listbox.Option>
+                      ))}
+                    </Listbox.Options>
+                  </Transition>
+                </div>
+              </Listbox>
             </div>
 
-            {/* Dark Color */}
+
+            {/* Dark Color Selector */}
             <div className="flex flex-col">
               <label
-                className={`text-sm mb-1 ${darkMode ? " bg-black text-gray-300" : "text-gray-600"}`}
+                className={`text-sm mb-1 ${darkMode ? "text-gray-300" : "text-gray-600"
+                  }`}
               >
                 Dark Color:
               </label>
-              <select
-                className={`p-2 rounded text-sm border focus:outline-none transition-all duration-200
-        ${darkMode
-                    ? "bg-black text-gray-100 border-gray-700 hover:border-gray-500"
-                    : "bg-white text-gray-800 border-gray-300 hover:border-gray-400"
-                  }`}
-                value={darkColor}
-                onChange={(e) => setDarkColor(e.target.value)}
-              >
-                <option value="black">Black</option>
-                <option value="slate">Slate</option>
-                <option value="zinc">Zinc</option>
-              </select>
+
+              <Listbox value={darkColor} onChange={setDarkColor}>
+                <div className="relative">
+                  {/* Button */}
+                  <Listbox.Button
+                    className={`w-full flex items-center justify-between p-2 rounded-md text-sm transition-all duration-200 border border-[0.8px]
+          ${darkMode
+                        ? "bg-black text-gray-100 border-gray-600 hover:border-gray-400"
+                        : "bg-white text-gray-800 border-gray-300 hover:border-gray-400"
+                      }`}
+                  >
+                    {darkColor.charAt(0).toUpperCase() + darkColor.slice(1)}
+                    <ChevronDown className="w-4 h-4 opacity-60" />
+                  </Listbox.Button>
+
+                  <Transition
+                    as={Fragment}
+                    leave="transition ease-in duration-100"
+                    leaveFrom="opacity-100"
+                    leaveTo="opacity-0"
+                  >
+                    <Listbox.Options
+                      className={`absolute z-10 mt-1 w-full rounded-md shadow-md border border-[0.8px] overflow-hidden 
+            ${darkMode
+                          ? "bg-black border-gray-700 text-gray-100"
+                          : "bg-white border-gray-200 text-gray-800"
+                        }`}
+                    >
+                      {["black", "slate", "zinc"].map((opt) => (
+                        <Listbox.Option
+                          key={opt}
+                          value={opt}
+                          className={({ active }) =>
+                            `cursor-pointer select-none relative  py-1 pl-8  pr-4 ${active
+                              ? darkMode
+                                ? `border-none bg-gradient-to-r ${themeColors[primaryColor]}`
+                                : `bg-gradient-to-r ${themeColors[primaryColor]}`
+                              : ""
+                            }`
+                          }
+                        >
+                          {({ selected }) => (
+                            <>
+                              <span
+                                className={`block truncate ${selected ? "font-semibold" : "font-normal"
+                                  }`}
+                              >
+                                {opt.charAt(0).toUpperCase() + opt.slice(1)}
+                              </span>
+                              {selected && (
+                                <span className="absolute inset-y-0 right-2 flex items-center">
+                                  <Check className="w-4 h-4" />
+                                </span>
+                              )}
+                            </>
+                          )}
+                        </Listbox.Option>
+                      ))}
+                    </Listbox.Options>
+                  </Transition>
+                </div>
+              </Listbox>
             </div>
 
-            {/* Theme Mode */}
+            {/* Theme Mode Selector */}
             <div className="flex flex-col">
               <label
-                className={`text-sm mb-1 ${darkMode ? " bg-black text-gray-300" : "text-gray-600"}`}
+                className={`text-sm mb-1 ${darkMode ? "text-gray-300" : "text-gray-600"
+                  }`}
               >
                 Theme Mode:
               </label>
-              <select
-                className={`p-2 rounded text-sm border focus:outline-none transition-all duration-200
-        ${darkMode
-                    ? "bg-black text-gray-100 border-gray-700 hover:border-gray-500"
-                    : "bg-white text-gray-800 border-gray-300 hover:border-gray-400"
-                  }`}
+
+              <Listbox
                 value={darkMode ? "dark" : "light"}
-                onChange={(e) => setDarkMode(e.target.value === "dark")}
+                onChange={(value) => setDarkMode(value === "dark")}
               >
-                <option value="light">Light</option>
-                <option value="dark">Dark</option>
-              </select>
+                <div className="relative">
+                  {/* Button */}
+                  <Listbox.Button
+                    className={`w-full flex items-center justify-between p-2 rounded-md text-sm transition-all duration-200 border border-[0.8px]
+          ${darkMode
+                        ? "bg-black text-gray-100 border-gray-600 hover:border-gray-400"
+                        : "bg-white text-gray-800 border-gray-300 hover:border-gray-400"
+                      }`}
+                  >
+                    {darkMode ? "Dark" : "Light"}
+                    <ChevronDown className="w-4 h-4 opacity-60" />
+                  </Listbox.Button>
+
+                  {/* Dropdown Options */}
+                  <Transition
+                    as={Fragment}
+                    leave="transition ease-in duration-100"
+                    leaveFrom="opacity-100"
+                    leaveTo="opacity-0"
+                  >
+                    <Listbox.Options
+                      className={`absolute z-10 mt-1 w-full rounded-md shadow-md border border-[0.8px] overflow-hidden 
+            ${darkMode
+                          ? "bg-black text-gray-100"
+                          : "bg-white text-gray-800"
+                        }`}
+                    >
+                      {["light", "dark"].map((opt) => (
+                        <Listbox.Option
+                          key={opt}
+                          value={opt}
+                          className={({ active }) =>
+                            `cursor-pointer select-none relative  py-1 pl-8  pr-4 ${active
+                              ? darkMode
+                                ? `border-none bg-gradient-to-r ${themeColors[primaryColor]}`
+                                : `bg-gradient-to-r ${themeColors[primaryColor]}`
+                              : ""
+                            }`
+                          }
+                        >
+                          {({ selected }) => (
+                            <>
+                              <span
+                                className={`block truncate ${selected ? "font-semibold" : "font-normal"
+                                  }`}
+                              >
+                                {opt.charAt(0).toUpperCase() + opt.slice(1)}
+                              </span>
+                              {selected && (
+                                <span className="absolute inset-y-0 right-2 flex items-center">
+                                  <Check className="w-4 h-4" />
+                                </span>
+                              )}
+                            </>
+                          )}
+                        </Listbox.Option>
+                      ))}
+                    </Listbox.Options>
+                  </Transition>
+                </div>
+              </Listbox>
             </div>
+
           </div>
 
 
@@ -228,7 +483,7 @@ export default function Dashboard() {
             <div className="col-span-1 flex flex-col gap-4 h-full">
               {/* Admin Menu */}
               <div className={`relative p-4 ${skinClasses(darkMode)[skin]}`}>
-                <h3 className="font-normal mb-4">Admin Menu</h3>
+                <h3 className="font-medium text-sm+  mb-4">Admin Menu</h3>
                 <ul className="space-y-2">
                   {menuItems.map(({ label, icon: Icon }) => (
                     <li
@@ -248,9 +503,9 @@ export default function Dashboard() {
 
               {/* Call Settings */}
               <div className={`relative p-4 flex flex-col flex-1 ${skinClasses(darkMode)[skin]}`}>
-                <h3 className="font-normal mb-4">Call Settings</h3>
+                <h3 className="font-medium text-sm+ mb-4">Call Settings</h3>
                 {callSettings.map((setting, i) => (
-                  <div key={i} className="flex justify-between items-center mb-3">
+                  <div key={i} className="flex justify-between items-center text-gray-300 mb-3 text-sm font-normal">
                     <span>{setting.label}</span>
                     <label className="relative inline-flex items-center cursor-pointer">
                       <input type="checkbox" defaultChecked className="sr-only peer" />
@@ -288,7 +543,7 @@ export default function Dashboard() {
                     June 23, 2021
                   </div>
 
-                  <h3 className="font-medium mt-2">UI/UX Design Conference</h3>
+                  <h3 className="font-medium text-base   mt-2">UI/UX Design Conference</h3>
 
                   <div className="mt-3 flex gap-2">
                     <span className="px-2 py-1 rounded bg-yellow-600/20 text-yellow-400 text-xs font-normal">
@@ -315,12 +570,12 @@ export default function Dashboard() {
                     />
                   </div>
                 </div>
-                <div className={`relative break-words print border-[0.5px] rounded-lg break-inside-avoid bg-gradient-to-r from-pink-400 to-[#4f46e5] p-1 ${skinClasses(darkMode)[skin]}`}>
+                <div className={`relative break-words print border-[0.5px] rounded-lg break-inside-avoid bg-gradient-to-r from-pink-400 ${themeColors[primaryColor]} p-1 ${skinClasses(darkMode)[skin]}`}>
 
                   <div className="bg-black h-full p-4">
-                    <h3 className="font-normal">Load Application</h3>
+                    <h3 className="font-medium text-sm+">Load Application</h3>
                     <p
-                      className="text-md mt-2 text-gray-400"
+                      className="text-normal mt-3 text-gray-300"
                       style={{
                         display: "-webkit-box",
                         WebkitLineClamp: 3,   // limit to 4 rows
@@ -347,17 +602,17 @@ export default function Dashboard() {
                 </div>
 
               </div>
-              {/* Sign In */}
+
               {/* 🔑 Sign In Card */}
-              <div className={`relative p-4 ${skinClasses(darkMode)[skin]}`}>
-                <h3 className="font-normal mb-3">Sign In</h3>
+              <div className={`relative p-4  ${skinClasses(darkMode)[skin]}`}>
+                <h3 className="font-medium text-sm+ mb-3">Sign In</h3>
 
                 {/* Username */}
                 <div className="relative mt-2">
                   <input
                     type="text"
                     placeholder="Enter Username"
-                    className="w-full pl-10 p-2 rounded border border-white/20 bg-transparent focus:outline-none focus:border-blue-400 transition-all duration-200"
+                    className="w-full pl-10 p-1 rounded border border-white/20 bg-transparent focus:outline-none focus:border-blue-400 transition-all duration-200"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                   />
@@ -372,7 +627,7 @@ export default function Dashboard() {
                   <input
                     type="password"
                     placeholder="Enter Password"
-                    className="w-full pl-10 p-2 rounded border border-white/20 bg-transparent focus:outline-none focus:border-blue-400 transition-all duration-200"
+                    className="w-full pl-10 p-1 rounded border border-white/20 bg-transparent focus:outline-none focus:border-blue-400 transition-all duration-200"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                   />
@@ -384,25 +639,25 @@ export default function Dashboard() {
 
                 {/* Submit */}
                 <button
-                  className={`mt-3 w-full bg-gradient-to-r ${themeColors[primaryColor]} text-white p-2 rounded`}
+                  className={`mt-6 w-full bg-gradient-to-r ${themeColors[primaryColor]} text-white p-1.5  rounded-lg`}
                 >
                   Sign In
                 </button>
 
                 {/* OR */}
-                <div className="flex items-center my-4">
+                <div className="flex items-center my-6">
                   <div className="flex-1 h-px bg-gray-700" />
                   <span className="px-2 text-xs text-gray-500">OR</span>
                   <div className="flex-1 h-px bg-gray-700" />
                 </div>
 
                 {/* Social Login */}
-                <div className="flex gap-3">
-                  <button className="flex-1 flex items-center justify-center gap-2 border border-white/20 rounded p-2">
+                <div className="flex gap-3 mt-6">
+                  <button className="flex-1 flex items-center justify-center gap-2 border border-white/20 rounded-lg p-2">
                     <img src="https://www.svgrepo.com/show/475656/google-color.svg" className="w-5 h-5" />
                     Google
                   </button>
-                  <button className="flex-1 flex items-center justify-center gap-2 border border-white/20 rounded p-2">
+                  <button className="flex-1 flex items-center justify-center gap-2 border border-white/20 rounded-lg p-2">
                     <img src="https://www.svgrepo.com/show/475654/github-color.svg" className="w-5 h-5" />
                     Github
                   </button>
@@ -421,7 +676,7 @@ export default function Dashboard() {
                       className="w-10 h-10 rounded-full border border-white/20 border-gray-500"
                     />
                     <div>
-                      <p className="font-normal text-sm">Travis Fuller</p>
+                      <p className="font-medium mt-0.5 text-sm">Travis Fuller</p>
                       <p className="text-xs text-gray-400">1259 items</p>
                     </div>
                   </div>
@@ -447,7 +702,7 @@ export default function Dashboard() {
                   <img
                     src="images/samsung.jpg"
                     alt="NFT"
-                    className="rounded-xl w-full object-cover shadow-md"
+                    className="rounded-lg w-full object-cover shadow-md"
                   />
                   {/* Gradient overlay */}
                   <div className="absolute inset-0 rounded-xl bg-gradient-to-t from-black/30 to-transparent" />
@@ -481,7 +736,7 @@ export default function Dashboard() {
               </div>
               {/* Bottom Dots */}
               <div
-                className={`lg:col-span-2 relative p-4 flex flex-col sm:flex-row flex-wrap gap-4 items-center justify-center ${darkMode ? bgClasses.dark[darkColor] : bgClasses.light[lightColor]
+                className={`lg:col-span-2 relative p-4 flex flex-col sm:flex-row flex-wrap gap-4 items-center justify-center 
                   } ${skinClasses(darkMode)[skin]}`}
               >
                 {/* Spinners */}
@@ -494,11 +749,11 @@ export default function Dashboard() {
 
                 {/* Color pickers */}
                 <div className="flex flex-wrap items-center justify-center gap-4">
-                  {Object.keys(themeColors1).map((color, i) => (
+                  {Object.keys(themeColors1).slice(0, 4).map((color, i) => (
                     <button
                       key={`check-${i}`}
                       onClick={() => setPrimaryColor(color)}
-                      className={`w-7 h-7 rounded-md flex items-center justify-center bg-gradient-to-r ${themeColors[color]} ${primaryColor === color ? "ring-2 ring-white" : ""
+                      className={`w-7 h-7 rounded-md flex items-center justify-center bg-gradient-to-r ${themeColors[color]} ${primaryColor === color ? "ring-1 ring-white" : ""
                         }`}
                     >
                       {primaryColor === color && (
@@ -508,7 +763,7 @@ export default function Dashboard() {
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="white"
-                          strokeWidth={3}
+                          strokeWidth={2}
                         >
                           <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                         </svg>
@@ -561,11 +816,29 @@ export default function Dashboard() {
                     })}
                   />
                 </div>
-                <p className="mt-5 text-lg font-normal">$31.313</p>
-                <p className="text-sm">Current Balance</p>
-                <button className="mt-4 border border-white/20 border-white/20 px-3 py-1.5 w-full rounded-full">
-                  Get Statement
+                <p className="mt-7 text-2xl font-semibold">$31.313</p>
+                <p className="font-medium tracking-wide text-sm text-white/80">Current Balance</p>
+
+                <button className="mt-4 border border-white/20 px-3 py-1.5 w-full rounded-full flex items-center justify-center gap-2">
+
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                    className="w-4 h-4 shrink-0"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="m9 12.75 3 3m0 0 3-3m-3 3v-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                    />
+                  </svg>
+                  <span>Get Statement</span>
                 </button>
+
               </div>
               {/* Wages + Banking */}
               <div className="flex flex-col gap-4 h-full mt-5">
@@ -575,7 +848,7 @@ export default function Dashboard() {
     ${skinClasses(darkMode)[skin]}`}
                 >
                   <div>
-                    <h3 className="font-normal">Pay App Wages</h3>
+                    <h3 className="font-medium text-sm+">Pay App Wages</h3>
                     <div className="flex gap-2 mt-2">
                       <span className="flex items-center gap-1 text-xs px-2 py-1 rounded bg-indigo-900 text-indigo-300">
                         <svg
@@ -618,13 +891,13 @@ export default function Dashboard() {
                 </div>
 
                 <div
-                  className={`relative p-5 bg-gradient-to-r from-pink-600 to-purple-700 text-white ${skinClasses(darkMode)[skin]
+                  className={`relative px-4 py-7 bg-gradient-to-r from-pink-600 to-purple-700 text-white ${skinClasses(darkMode)[skin]
                     }`}
                 >
-                  <h3 className="font-normal mb-3">Banking Cards</h3>
+                  <h3 className="font-medium text-base mb-3">Banking Cards</h3>
                   <Swiper
-                    spaceBetween={16}
-                    slidesPerView={1.3}
+                    spaceBetween={12}
+                    slidesPerView={1.2}
                     pagination={{ clickable: true }}
                     modules={[Pagination]}
                     className="w-full"
@@ -632,7 +905,7 @@ export default function Dashboard() {
                   >
                     {cards.map((card, idx) => (
                       <SwiperSlide key={idx}>
-                        <div className="rounded-xl p-6 bg-gradient-to-r from-pink-500 to-purple-500 shadow-lg text-white flex flex-col gap-4">
+                        <div className="rounded-lg p-6 bg-gradient-to-r from-pink-500 to-purple-500 shadow-lg text-white flex flex-col gap-2">
                           <div className="flex justify-between items-center">
                             <span className="text-xl font-extrabold">
                               {card.type}
@@ -652,10 +925,12 @@ export default function Dashboard() {
                               />
                             </svg>
                           </div>
-                          <p className="text-3xl font-normal">{card.amount}</p>
-                          <p className="tracking-widest text-sm opacity-90">
+                         <div>
+                           <p className="text-lg font-semibold tracking-wide">{card.amount}</p>
+                          <p className="mt-1 text-xs font-medium">
                             {card.number}
                           </p>
+                         </div>
                         </div>
                       </SwiperSlide>
                     ))}
